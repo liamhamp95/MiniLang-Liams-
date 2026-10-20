@@ -1,4 +1,4 @@
-# token.py
+# minilang_tokens.py
 # Liam Hampshire & Liam Shum
 
 # defined token types
@@ -42,6 +42,8 @@ class TokenType:
     AND = "AND"
     OR = "OR"
     NOT = "NOT"
+    
+    NEWLINE = "NEWLINE"
 
 # class used to tokenize MiniLang code to individual objects
 class Token:
