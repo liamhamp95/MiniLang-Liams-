@@ -28,4 +28,8 @@ class Lexer:
 
         while self.current().isdigit():
             self.advance()
+            
+        number = self.source[start:self.position]
+        
+        return Token(TokenType.NUMBER, number)
         

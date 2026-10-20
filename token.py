@@ -22,6 +22,26 @@ class TokenType:
     SEMICOLON = "SEMICOLON"
 
     EOF = "EOF"
+    
+    DISPLAY = "DISPLAY"
+    IF = "IF"
+    THEN = "THEN"
+    ELSE = "ELSE"
+
+    STRING = "STRING"
+    COMMA = "COMMA"
+
+    EQUAL = "EQUAL"
+    NOT_EQUAL = "NOT_EQUAL"
+
+    LESS = "LESS"
+    LESS_EQUAL = "LESS_EQUAL"
+    GREATER = "GREATER"
+    GREATER_EQUAL = "GREATER_EQUAL"
+
+    AND = "AND"
+    OR = "OR"
+    NOT = "NOT"
 
 # class used to tokenize MiniLang code to individual objects
 class Token:
