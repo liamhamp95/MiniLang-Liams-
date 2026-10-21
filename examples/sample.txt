@@ -1,0 +1,7 @@
+// Example MiniLang Program
+let x = 5;
+let y = 10;
+let z = max(x * 3, y);
+if z > 12
+then display (z + 1)
+else display (z – 1);
