@@ -1,4 +1,5 @@
 import sys
+from pathlib import Path
 from lexer import Lexer
  
 # runs a MiniLang program from a text file
@@ -8,6 +9,9 @@ def main():
     args = sys.argv[1:]
     trace = "--trace" in args
     files = [arg for arg in args if arg != "--trace"]
+    if not files:
+        project_folder = Path(__file__).resolve().parent
+        files = [str(project_folder / "examples" / "sample.txt")]
  
     if len(files) != 1:
         print("Usage: python main.py <file.txt> [--trace]")
