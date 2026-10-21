@@ -1,25 +1,3 @@
-
-Liam’s MacBook Air, Connected
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Main · PY
 import sys
 from lexer import Lexer
  
@@ -71,5 +49,3 @@ def main():
  
 if __name__ == "__main__":
     main()
- 
-Claude finished the response
