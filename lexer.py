@@ -61,6 +61,7 @@ class Lexer:
         state = "INT"
         self.advance()  # first digit already checked by tokenize()
 
+        # loop which goes until position no longer is an int, frac, or dot
         while True:
             character = self.current()
 
@@ -79,6 +80,7 @@ class Lexer:
 
         number = self.source[start:self.position]
 
+        # 5. would throw an error
         if state == "DOT":
             self.error(f"Malformed number '{number}'.")
 
@@ -86,6 +88,7 @@ class Lexer:
         if self.current().isalpha() or self.current() == '_':
             self.error(f"Invalid number '{number}{self.current()}'.")
 
+        # adds token as either float or int, depending on ending state
         if state == "FRAC":
             self.add_token(TokenType.NUMBER, float(number))
         else:
@@ -119,8 +122,8 @@ class Lexer:
     # method to read a string in quotes
     # accepts straight quotes "..." and the curly quotes used in the handout
     def read_string(self):
-        opening = self.current()
-
+        opening = self.current() # starts opening at "
+        # accepts curly quotes
         if opening == '“':
             closing = '”'
         else:
@@ -130,9 +133,9 @@ class Lexer:
         start = self.position
 
         while self.current() != closing:
-            if self.current() in ('\0', '\n'):
+            if self.current() in ('\0', '\n'): # gives error missing closing quote
                 self.error("Unterminated string, missing closing quote.")
-            self.advance()
+            self.advance() # advances until reaches closing quoote
 
         text = self.source[start:self.position]
         self.advance()  # skip closing quote
@@ -148,8 +151,8 @@ class Lexer:
     #   '&' then '&' -> AND   (a single '&' is an error)
     #   '|' then '|' -> OR    (a single '|' is an error)
     def read_operator(self):
-        first = self.current()
-        second = self.peek()
+        first = self.current() # gets first character
+        second = self.peek() # gets 2nd character without moving
 
         one_char = {
             '<': TokenType.LESS,
@@ -169,17 +172,17 @@ class Lexer:
 
         pair = first + second
 
-        if pair in two_char:
+        if pair in two_char: # checks if the pair matches with the two_char set of words
             self.advance()
             self.advance()
             self.add_token(two_char[pair], pair)
 
-        elif first in one_char:
+        elif first in one_char: # then checks if only the first char matches in one_char set
             self.advance()
             self.add_token(one_char[first], first)
 
         else:
-            self.error(f"Invalid character '{first}'. Did you mean '{first * 2}'?")
+            self.error(f"Invalid character '{first}'. Did you mean '{first * 2}'?") # gives error and recommends first*2. ex is & and &&
 
     # main loop that reads source and chooses which method to call.
     def tokenize(self):
@@ -205,7 +208,7 @@ class Lexer:
             # skips spaces, tabs, and newlines
             # (newlines are whitespace because if/then/else can span lines)
             if character in ' \t\r\n':
-                self.advance()
+                self.advance() # newline increases in advance()
 
             # skips a // comment until the end of the line
             elif character == '/' and self.peek() == '/':
