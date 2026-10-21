@@ -2,9 +2,6 @@ import sys
 from lexer import Lexer
  
 # runs a MiniLang program from a text file
-# usage:
-#   python main.py program.txt           shows the tokens
-#   python main.py program.txt --trace   shows tokens as the lexer creates them
  
 def main():
     # gets the file name and checks for --trace
