@@ -9,8 +9,3 @@ Created by: Liam Hampshire, Liam Shum
 git checkout main
 git pull origin main
 
-test change
-
-test
-
-Hello
