@@ -20,7 +20,7 @@ class Lexer:
 
         return self.source[self.position]
 
-    # looks one character ahead without moving (needed for <=, ==, &&, //, etc.)
+    # looks one character ahead without moving (needed for <=, ==, &&, //)
     def peek(self):
         if self.position + 1 >= len(self.source):
             return '\0'
